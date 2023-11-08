@@ -3,6 +3,7 @@ import Navbar from './Components/Navbar/Navbar'
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 import Posts from './Components/Posts/Posts'
 import UpdatePost from './Components/Update/UpdatePost'
+import { ToastContainer } from 'react-toastify'
 function App() {
 
   return (
@@ -15,6 +16,7 @@ function App() {
     <Route exact path='/update/:id' element={<UpdatePost />}/>
    </Routes>
    </BrowserRouter>
+   <ToastContainer />
    </div>
   )
 }

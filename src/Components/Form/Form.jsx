@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
-
 const Form = () => {
   const [users, setUsers] = useState({});
   const dispatch = useDispatch();

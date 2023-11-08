@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 // post userdata in api
 export const createUser = createAsyncThunk(
@@ -100,10 +102,12 @@ export const userDetail = createSlice({
     [createUser.fulfilled]: (state, action) => {
       state.loading = false;
       state.users.push(action.payload);
+      toast.success("User added successfully!")
     },
     [createUser.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload.response;
+      toast.error("Error Occured!");
     },
     [showUser.pending]: (state) => {
       state.loading = true;
@@ -111,6 +115,7 @@ export const userDetail = createSlice({
     [showUser.fulfilled]: (state, action) => {
       state.loading = false;
       state.users = action.payload;
+      toast.info("Users displayed successfully")
     },
     [showUser.rejected]: (state, action) => {
       state.loading = false;
@@ -124,6 +129,7 @@ export const userDetail = createSlice({
       const { id } = action.payload;
       if (id) {
         state.users = state.users.filter((user) => user.id !== id);
+        toast.success("User deleted successfully");
       }
     },
     [deleteUser.rejected]: (state, action) => {

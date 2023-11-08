@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateUser } from "../../features/userSlice";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const UpdatePost = () => {
   const { id } = useParams();
   const [updateData, setUpdateData] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { users} = useSelector((state) => state.app);
+  const { users } = useSelector((state) => state.app);
 
   useEffect(() => {
     if (id) {
@@ -23,13 +26,17 @@ const UpdatePost = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    dispatch(updateUser(updateData))
-    navigate('/read')
-}
+    dispatch(updateUser(updateData));
+    toast.success("User updated")
+    navigate("/read");
+  };
 
   return (
     <>
-      <form className="w-50 mx-auto my-5 border p-4 border-3 border-secondary text-center" onSubmit={handleUpdate}>
+      <form
+        className="w-50 mx-auto my-5 border p-4 border-3 border-secondary text-center"
+        onSubmit={handleUpdate}
+      >
         <h2 className="text-center my-2">Update Your Data</h2>
         <div className="row mb-3">
           <label htmlFor="inputName" className="col-sm-2 col-form-label">
@@ -107,6 +114,7 @@ const UpdatePost = () => {
           Update
         </button>
       </form>
+     
     </>
   );
 };
