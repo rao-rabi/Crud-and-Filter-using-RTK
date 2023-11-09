@@ -1,18 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { showUser, deleteUser } from "../../features/userSlice";
 import ViewPost from "../View/ViewPost";
 import { Link } from "react-router-dom";
+import { MoonLoader } from "react-spinners";
 
 const Posts = () => {
   const dispatch = useDispatch();
   const [showPopUp, setShowPopUp] = useState(false);
   const [id, setId] = useState();
   const [radioData, setRadioData] = useState("");
-  const { users, searchData } = useSelector((state) => state.app);
+  const { users, searchData, loading } = useSelector((state) => state.app);
   useEffect(() => {
     dispatch(showUser());
   }, [dispatch]);
+
+  const override = {
+    position: 'absolute',
+    top: '45%',
+    left: '45%',
+  };
+
+  if(loading) {
+    return <MoonLoader color="green"  
+    loading={loading}
+    cssOverride={override}
+    size={100}
+    />
+  }
   return (
     <div>
       {showPopUp && (
@@ -70,7 +85,7 @@ const Posts = () => {
             else return ele;
           })
           .map((user) => (
-            <div className="card w-50 mx-auto my-4 text-center" key={user.id}>
+            <div className="card mx-auto my-4 text-center" style={{width:'90vw'}} key={user.id}>
               <div className="card-body">
                 <h5 className="card-title">{user.name}</h5>
                 <p className="card-text">

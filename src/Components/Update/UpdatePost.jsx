@@ -34,7 +34,7 @@ const UpdatePost = () => {
   return (
     <>
       <form
-        className="w-50 mx-auto my-5 border p-4 border-3 border-secondary text-center"
+        className=" mx-auto my-5 border p-4 border-3 border-secondary text-center" style={{width:'90vw'}} 
         onSubmit={handleUpdate}
       >
         <h2 className="text-center my-2">Update Your Data</h2>

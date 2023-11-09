@@ -19,7 +19,7 @@ const Form = () => {
   };
   return (
     <>
-      <form className="w-50 mx-auto my-5 border p-4 border-3 border-secondary text-center" onSubmit={handleSubmit}>
+      <form className="mx-auto my-5 border p-4 border-3 border-secondary text-center" style={{width:'90vw'}} onSubmit={handleSubmit}>
         <h2 className="text-center">Fill the Form</h2>
         <div className="row mb-3">
           <label htmlFor="inputName" className="col-sm-2 col-form-label">
